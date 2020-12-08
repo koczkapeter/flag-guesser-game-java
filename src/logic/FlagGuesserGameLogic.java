@@ -6,11 +6,12 @@ import gui.FlagGuesserGameFrame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.*;
 
 public class FlagGuesserGameLogic {
-    public static Question current;
+    public static Question currentQuestion;
     public final FlagGuesserGameFrame frame;
 
     public FlagGuesserGameLogic(FlagGuesserGameFrame frame) {
@@ -20,7 +21,7 @@ public class FlagGuesserGameLogic {
     public void generateQuestion() {
         List<String> labels = Arrays.asList(Objects.requireNonNull(new File("flags/").list()));
         Collections.shuffle(labels);
-        current = new Question(labels.subList(0, 4));
+        currentQuestion = new Question(labels.subList(0, 4));
     }
 
     public List<JButton> getButtons(Question question) {
@@ -37,6 +38,7 @@ public class FlagGuesserGameLogic {
                     else {
                         System.out.println("NOT OK");
                     }
+                    Main.progress++;
                     if(Main.progress <Main.QUESTIONS) {
                         frame.redraw();
                         frame.updateProgressBar();
@@ -44,6 +46,7 @@ public class FlagGuesserGameLogic {
                     else{
                         final JFrame gameOverMessage = new JFrame();
                         JOptionPane.showMessageDialog(gameOverMessage, "Done. Result: " + Main.correctAnswers + " / " + Main.QUESTIONS);
+                        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                     }
                 }
             });

@@ -48,12 +48,12 @@ public class FlagGuesserGameFrame extends JFrame {
         rowPanel.removeAll();
         rowPanel.revalidate();
         rowPanel.repaint();
-        iconAsLabel.setIcon(new ImageIcon("flags/" + FlagGuesserGameLogic.current.getLabels().get(0)));
+        iconAsLabel.setIcon(new ImageIcon("flags/" + FlagGuesserGameLogic.currentQuestion.getLabels().get(0)));
 
         add(rowPanel);
 
         rowPanel.add(iconAsLabel);
-        List<JButton> buttons = logic.getButtons(FlagGuesserGameLogic.current);
+        List<JButton> buttons = logic.getButtons(FlagGuesserGameLogic.currentQuestion);
         Collections.shuffle(buttons);
         for (int i = 0; i < 4; i++) {
             rowPanel.add(buttons.get(i));
@@ -61,7 +61,7 @@ public class FlagGuesserGameFrame extends JFrame {
     }
 
     public void updateProgressBar() {
-        progressBar.setValue(++Main.progress);
+        progressBar.setValue(Main.progress);
         correctAnswerProgressBar.setValue(Main.correctAnswers);
     }
 }
