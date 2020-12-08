@@ -5,9 +5,11 @@ import logic.FlagGuesserGameLogic;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collections;
+import java.util.List;
 
 public class FlagGuesserGameFrame extends JFrame {
-    final JLabel label;
+    final JLabel iconAsLabel;
     final JPanel rowPanel;
     ImageIcon icon;
     final FlagGuesserGameLogic logic = new FlagGuesserGameLogic(this);
@@ -23,7 +25,7 @@ public class FlagGuesserGameFrame extends JFrame {
         progressBar.setMaximum(Main.QUESTIONS);
         correctAnswerProgressBar.setMaximum(Main.QUESTIONS);
 
-        label = new JLabel();
+        iconAsLabel = new JLabel();
         add(progressBar);
         add(correctAnswerProgressBar);
         rowPanel = new JPanel();
@@ -47,14 +49,15 @@ public class FlagGuesserGameFrame extends JFrame {
         rowPanel.removeAll();
         rowPanel.revalidate();
         rowPanel.repaint();
-        icon = new ImageIcon("flags/" + FlagGuesserGameLogic.current.getFlags().get(0));
-        label.setIcon(icon);
+        iconAsLabel.setIcon(new ImageIcon("flags/" + FlagGuesserGameLogic.current.getFlags().get(0)));
 
         add(rowPanel);
 
-        rowPanel.add(label);
+        rowPanel.add(iconAsLabel);
+        List<JButton> buttons = logic.getButtons(FlagGuesserGameLogic.current);
+        Collections.shuffle(buttons);
         for (int i = 0; i < 4; i++) {
-            rowPanel.add(logic.getButtons(FlagGuesserGameLogic.current).get(i));
+            rowPanel.add(buttons.get(i));
         }
     }
 
