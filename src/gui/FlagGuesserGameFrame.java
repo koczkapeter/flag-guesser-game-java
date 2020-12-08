@@ -11,7 +11,6 @@ import java.util.List;
 public class FlagGuesserGameFrame extends JFrame {
     final JLabel iconAsLabel;
     final JPanel rowPanel;
-    ImageIcon icon;
     final FlagGuesserGameLogic logic = new FlagGuesserGameLogic(this);
     final JProgressBar progressBar;
     final JProgressBar correctAnswerProgressBar;
@@ -49,7 +48,7 @@ public class FlagGuesserGameFrame extends JFrame {
         rowPanel.removeAll();
         rowPanel.revalidate();
         rowPanel.repaint();
-        iconAsLabel.setIcon(new ImageIcon("flags/" + FlagGuesserGameLogic.current.getFlags().get(0)));
+        iconAsLabel.setIcon(new ImageIcon("flags/" + FlagGuesserGameLogic.current.getLabels().get(0)));
 
         add(rowPanel);
 

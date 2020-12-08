@@ -18,19 +18,19 @@ public class FlagGuesserGameLogic {
     }
 
     public void generateQuestion() {
-        List<String> flags = Arrays.asList(Objects.requireNonNull(new File("flags/").list()));
-        Collections.shuffle(flags);
-        current = new Question(flags.subList(0, 4));
+        List<String> labels = Arrays.asList(Objects.requireNonNull(new File("flags/").list()));
+        Collections.shuffle(labels);
+        current = new Question(labels.subList(0, 4));
     }
 
     public List<JButton> getButtons(Question question) {
         ArrayList<JButton> buttons = new ArrayList<>();
-        for (String current : question.getFlags()) {
+        for (String current : question.getLabels()) {
             JButton currentButton = new JButton(current);
             currentButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (currentButton.getText().equals(question.correctAnswer)) {
+                    if (currentButton.getText().equals(question.correctLabel)) {
                         Main.correctAnswers++;
                         System.out.println("OK");
                     }

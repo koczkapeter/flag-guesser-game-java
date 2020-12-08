@@ -3,15 +3,15 @@ package logic;
 import java.util.List;
 
 public class Question {
-    final List<String> flags;
-    final String correctAnswer;
+    final List<String> labels;
+    final String correctLabel;
 
-    public Question(List<String> flags) {
-        this.flags = flags;
-        correctAnswer=flags.get(0);
+    public Question(List<String> labels) {
+        this.labels = labels;
+        correctLabel = labels.get(0);
     }
 
-    public List<String> getFlags() {
-        return flags;
+    public List<String> getLabels() {
+        return labels;
     }
 }
