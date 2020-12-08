@@ -7,12 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class FlagGuesserGameFrame extends JFrame {
-    JLabel label;
-    JPanel rowPanel;
+    final JLabel label;
+    final JPanel rowPanel;
     ImageIcon icon;
-    FlagGuesserGameLogic logic = new FlagGuesserGameLogic(this);
-    JProgressBar progressBar;
-    JProgressBar correctAnswerProgressBar;
+    final FlagGuesserGameLogic logic = new FlagGuesserGameLogic(this);
+    final JProgressBar progressBar;
+    final JProgressBar correctAnswerProgressBar;
     public FlagGuesserGameFrame() throws HeadlessException {
         logic.generateQuestion();
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -47,14 +47,14 @@ public class FlagGuesserGameFrame extends JFrame {
         rowPanel.removeAll();
         rowPanel.revalidate();
         rowPanel.repaint();
-        icon = new ImageIcon("flags/" + logic.current.getFlags().get(0));
+        icon = new ImageIcon("flags/" + FlagGuesserGameLogic.current.getFlags().get(0));
         label.setIcon(icon);
 
         add(rowPanel);
 
         rowPanel.add(label);
         for (int i = 0; i < 4; i++) {
-            rowPanel.add(logic.getButtons(logic.current).get(i));
+            rowPanel.add(logic.getButtons(FlagGuesserGameLogic.current).get(i));
         }
     }
 

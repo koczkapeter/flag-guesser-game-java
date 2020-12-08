@@ -7,28 +7,20 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class FlagGuesserGameLogic {
     public static Question current;
-    public FlagGuesserGameFrame frame;
+    public final FlagGuesserGameFrame frame;
 
     public FlagGuesserGameLogic(FlagGuesserGameFrame frame) {
         this.frame = frame;
     }
 
     public void generateQuestion() {
-        List<String> flags = Arrays.asList(new File("flags/").list());
+        List<String> flags = Arrays.asList(Objects.requireNonNull(new File("flags/").list()));
         Collections.shuffle(flags);
         current = new Question(flags.subList(0, 4));
-        System.out.println("debug size is" + current.getFlags().size());
-        System.out.println("debuggg");
-        for(int i = 0; i<current.getFlags().size(); i++){
-            System.out.println(i + current.getFlags().get(i));
-        }
     }
 
     public List<JButton> getButtons(Question question) {
