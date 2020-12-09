@@ -48,7 +48,7 @@ public class FlagGuesserGameFrame extends JFrame {
         rowPanel.removeAll();
         rowPanel.revalidate();
         rowPanel.repaint();
-        iconAsLabel.setIcon(new ImageIcon("flags/" + FlagGuesserGameLogic.currentQuestion.getLabels().get(0)));
+        iconAsLabel.setIcon(new ImageIcon("flags/" + FlagGuesserGameLogic.currentQuestion.getCorrectLabel()));
 
         add(rowPanel);
 

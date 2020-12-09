@@ -14,4 +14,8 @@ public class Question {
     public List<String> getLabels() {
         return labels;
     }
+
+    public String getCorrectLabel() {
+        return correctLabel;
+    }
 }
